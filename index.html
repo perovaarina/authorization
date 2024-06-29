@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <h1>
+    asdfghjkl;;lkjhgfdssdfghjklsdfghjkl;lkjhgfdsasdfghjkl;lkjhgfd
+  </h1>
+  <h1>sdfghjkl;;lkjhgfd</h1>
+  <h1>kjhgfd</h1>
+    <form id="registrationForm">
+        <h2>Регистрация</h2>
+        <label for="regUsername">Логин:</label>
+        <input type="text" id="regUsername" name="regUsername" required><br><br>
+        <label for="regPassword">Пароль:</label>
+        <input type="password" id="regPassword" name="regPassword" required><br><br>
+        <div class="form-group">
+            <button type="submit">Зарегистрироваться</button>
+        </div>
+        <div class="form-group">
+            <button> <a href="index.html">Авторизоваться</a></button>
+        </div>
+    </form>
+
+    <form id="loginForm">
+        <h2>Авторизация</h2>
+        <label for="loginUsername">Логин:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required><br><br>
+        <label for="loginPassword">Пароль:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required><br><br>
+        <div class="form-group">
+            <button type="submit">Войти</button>
+        </div>
+        <div class="form-group">
+            <button> <a href="registr.html">Регистрация</a></button>
+        </div>
+    </form>
+
+    <div id="message" style="color: red;"></div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+
+            // сохраняет пароль и логин в localStorage
+            localStorage.setItem(username, password);
+            console.log(username, password);
+            document.getElementById('message').textContent = 'Регистрация прошла успешно!';
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Сравнивает пароль и логин из localStorage и введённым 
+            const storedPassword = localStorage.getItem(username);
+
+            if (storedPassword === password) {
+                document.getElementById('message').textContent = 'Вы вошли!';
+            } else {
+                document.getElementById('message').textContent = 'Неправильный логин или пароль';
+            }
+        });
+    </script>
+</body>
+
+</html>
